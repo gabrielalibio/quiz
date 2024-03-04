@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Quiz - Perguntas E Respostas </title>
+    <style>
+        @font-face {
+            font-family: f1;
+            src: url(fontes/ringbearer/RINGM___.TTF);
+        }
+
+        @font-face {
+            font-family: f2;
+            src: url(fontes/utendo/Utendo-Black.ttf);
+        }
+
+        @font-face {
+            font-family: f3;
+            src: url(fontes/godofwar/GODOFWAR.TTF);
+        }
+
+        @-webkit-keyframes tracking-in-expand-fwd {
+  0% {
+    letter-spacing: -0.5em;
+    -webkit-transform: translateZ(-700px);
+            transform: translateZ(-700px);
+    opacity: 0;
+  }
+  40% {
+    opacity: 0.6;
+  }
+  100% {
+    -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+    opacity: 1;
+  }
+}
+@keyframes tracking-in-expand-fwd {
+  0% {
+    letter-spacing: -0.5em;
+    -webkit-transform: translateZ(-700px);
+            transform: translateZ(-700px);
+    opacity: 0;
+  }
+  40% {
+    opacity: 0.6;
+  }
+  100% {
+    -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+    opacity: 1;
+  }
+}
+
+.tracking-in-expand-fwd {
+	-webkit-animation: tracking-in-expand-fwd 0.8s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+	        animation: tracking-in-expand-fwd 0.8s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+}
+
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-image: url(https://img.freepik.com/fotos-gratis/balao-de-futebol-na-ia-generativa-da-cena-monocromatica-do-acampamento_188544-9745.jpg);
+            background-repeat: no-repeat;
+            background-size: 100%;
+        }
+
+        .quiz-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        #pergunta {
+            font-size: 35px;
+            margin-bottom: 20px;
+            color: crimson;
+            font-family: f2;
+        }
+
+        #opcoes {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 6px;
+            box-shadow: 5px 10px 15px #1100ff;
+        }
+
+        .correto {
+            background-color: #8BC34A;
+        }
+
+        .incorreto {
+            background-color: #ff5722;
+        }
+
+        h1{
+            color: crimson;
+            font-size: 50px;
+            font-family: f1;
+            box-shadow: 5px 10px 15px #0026ff;
+            margin-top: 150px;
+        }
+
+        footer{
+            font-size: 25px;
+            margin-top: 50px;
+            color: crimson;
+            font-family: f3;
+        }
+
+        .quiz{
+            color: crimson;
+            font-size: 20px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="quiz-container">
+        <h1 class="tracking-in-expand-fwd">Você Conhece Futebol?</h1>
+        <div id="pergunta"></div>
+        <div id="opcoes"></div>
+        <div id="resultado"></div>
+    </div>
+
+    <script>
+        const perguntas = [
+            {
+                pergunta: "Quantas Copas Do Mundo o Brasil tem?",
+                opcoes: ["2", "3", "4", "5"],
+                resposta: "5"
+            },
+            {
+                pergunta: "Khvicha Kvaratskhelia, joga em qual time italiano?",
+                opcoes: ["Juventus", "Milan", "Roma", "Napoli"],
+                resposta: "Napoli"
+            },
+            {
+                pergunta: "Qual o número da camisa de Dominik Szoboszlai, jogador do Liverpool?",
+                opcoes: ["8", "10", "17", "66"],
+                resposta: "8"
+            },
+            {
+                pergunta: "Quantos gols tem Cristiano Ronaldo atualmente?",
+                opcoes: ["1000", "644", "877", "915"],
+                resposta: "877"
+            },
+            {
+                pergunta: "Quem foi o ganhador do prêmio Golden Boy de 2023?",
+                opcoes: ["Kylian Mbappé", "Pablo Gavi", "Jude Bellingham", "Victor Osimhen"],
+                resposta: "Jude Bellingham"
+            },
+            {
+                pergunta: "Quem ganhou o último prêmio The Best da FIFA?",
+                opcoes: ["Cristiano Ronaldo", "Lionel Messi", "Karim Benzema", "Robert Lewandowski"],
+                resposta: "Lionel Messi"
+            },
+            {
+                pergunta: "Qual país foi campeão da Copa Do Mundo de 1934?",
+                opcoes: ["Uruguai", "Itália", "Brasil", "Argentina"],
+                resposta: "Itália"
+            },
+            {
+                pergunta: "Que jogador fez o gol que deu o título da Copa Do Mundo para a Espanha?",
+                opcoes: ["Piqué", "Xavi", "Sérgio Ramos", "Iniesta"],
+                resposta: "Iniesta"
+            },
+            {
+                pergunta: "Qual jogador substituiu Neymar na Copa  Do Mundo de 2014?",
+                opcoes: ["Richarlison", "Bernard", "Lucas Moura", "Jô"],
+                resposta: "Bernard"
+            },
+            {
+                pergunta: "Qual o atual campeão da Liga Dos Campeões da UEFA?",
+                opcoes: ["Real Madrid", "Manchester City", "Milan", "Barcelona"],
+                resposta: "Manchester City"
+            }
+        ];
+
+        const perguntaElemento = document.getElementById("pergunta");
+        const opcoesElemento = document.getElementById("opcoes");
+        const resultadoElemento = document.getElementById("resultado");
+
+        let indicePerguntaAtual = 0;
+
+        function carregarPergunta() {
+            const perguntaAtual = perguntas[indicePerguntaAtual];
+            perguntaElemento.textContent = perguntaAtual.pergunta;
+
+            opcoesElemento.innerHTML = "";
+            perguntaAtual.opcoes.forEach(opcao => {
+                const botao = document.createElement("button");
+                botao.textContent = opcao;
+                botao.addEventListener("click", () => verificarResposta(opcao));
+                opcoesElemento.appendChild(botao);
+            });
+        }
+
+        function verificarResposta(respostaSelecionada) {
+            const perguntaAtual = perguntas[indicePerguntaAtual];
+            if (respostaSelecionada === perguntaAtual.resposta) {
+                resultadoElemento.textContent = "Resposta correta!";
+                resultadoElemento.className = "correto";
+            } else {
+                resultadoElemento.textContent = "Resposta incorreta. A resposta correta é: " + perguntaAtual.resposta;
+                resultadoElemento.className = "incorreto";
+            }
+
+            indicePerguntaAtual++;
+            if (indicePerguntaAtual < perguntas.length) {
+                setTimeout(carregarPergunta, 2000);
+            } else {
+                resultadoElemento.textContent = "Quiz concluído!";
+                resultadoElemento.className = "quiz";
+            }
+        }
+
+        carregarPergunta();
+    </script>
+
+    <footer>Desenvolvido por Gabriela L. | ProgWeb | Fev2024</footer>
+
+</body>
+
+</html>
